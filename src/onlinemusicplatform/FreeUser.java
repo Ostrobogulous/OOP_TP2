@@ -47,7 +47,7 @@ class FreeUser implements User {
             System.out.printf("Playlist doesn't belong to %s.", username);
             return;
         }
-        if (playlist.getSongs().size() == 20) {
+        if (playlist.getSongs().size() == MAX_SONGS_PER_PLAYLIST) {
             System.out.println("You can't add more than 20 songs to a playlist.");
             System.out.println("Get premium to create infinite number of songs in a playlist.");
         }
@@ -67,7 +67,7 @@ class FreeUser implements User {
 
     @Override
     public Playlist createPlaylist(String name) {
-        if (playlists.size() >= 5) {
+        if (playlists.size() >= MAX_PLAYLISTS) {
             System.out.println("You can't create more than 5 playlists.");
             System.out.println("Get premium to create infinite number of playlists.");
             return null;
@@ -84,7 +84,6 @@ class FreeUser implements User {
             playlists.remove(playlist);
             System.out.printf("Playlist %s is removed.\n", playlist.getName());
             System.out.println();
-            playlist = null;
         } else {
             System.out.printf("Playlist %s doesn't belong to %s.\n", playlist.getName(), username);
             System.out.println();
